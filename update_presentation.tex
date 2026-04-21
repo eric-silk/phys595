@@ -5,6 +5,7 @@
 %\def\EMAILEDCOPY{}
 
 % The paper: https://arxiv.org/pdf/2508.07177
+% Using pympress to present, I think
 
 \documentclass[
     aspectratio=169,
@@ -23,8 +24,8 @@
 \pgfpagesuselayout{resize to}[letterpaper,border shrink=2mm, landscape]
 \fi
 \else
-%\setbeameroption{show notes}
-%\setbeameroption{show notes on second screen=bottom}
+\setbeameroption{show notes}
+\setbeameroption{show notes on second screen=bottom}
 \fi
 \setbeamertemplate{caption}[numbered]
 
@@ -79,12 +80,9 @@
     \titlepage
     \tiny
     Compiled: \today
+    \note[item]{Mention I use to work with the second author}
 \end{frame}
 
-
-%\begin{frame}
-%    \tableofcontents
-%\end{frame}
 
 \section{Background}
 \begin{frame}
@@ -95,8 +93,10 @@
         \item Useful for education and intuition when designing power systems
         \item Not research, \textit{per se}
     \end{itemize}
-
+    \note[item]{These papers aren't uncommon in engineering as "support" for new research areas}
+    \note[item]{Given the emphasis on broad interest/Accessibility in this class, this seemed appropriate}
 \end{frame}
+
 \begin{frame}
     \frametitle{Power Generation}
     \begin{columns}
@@ -116,6 +116,9 @@
             \end{figure}
         \end{column}
     \end{columns}
+
+    \note[item]{Centralized due to economies of scale}
+    \note[item]{The strong coupling is bidirectional}
 \end{frame}
 
 \begin{frame}
@@ -125,7 +128,7 @@
             \begin{itemize}
                 \item Inverse relationship between frequency and speed
                 \item Droop control
-                \item Prevents frequency collapse
+                \item Prevents frequency collapse (or the opposite)
                 \item Enables power sharing between generators
                 \item ``Grid forming'' (GFM) resources
             \end{itemize}
@@ -145,6 +148,11 @@
             \end{figure}
         \end{column}
     \end{columns}
+
+    \note[item]{We need controls to keep system frequency at nominal}
+    \note[item]{Primary control is a form of proportional control}
+    \note[item]{Prevents runaway, but doesn't remove frequency error entirely}
+
 \end{frame}
 
 \begin{frame}
@@ -154,19 +162,28 @@
             \begin{itemize}
                 \item Some resources produce \textit{direct} current (DC)
                 \item This must be converted to AC via \textit{inverters}
-                \item Similar to digital-to-analog converters (DACs)
-                \item Weakly coupled to grid dynamics
+                      \begin{itemize}
+                          \item Known as "Inverter-based resources" (IBR)
+                      \end{itemize}
                 \item Historically ``grid following'' (GFL), converting to GFM
+                \item Weakly coupled to grid dynamics
             \end{itemize}
         \end{column}
         \begin{column}{0.5\textwidth}
             \begin{figure}[h]
                 \vspace{-10pt}
                 \includegraphics[height=0.6\textheight]{img/solar_panels.png}
-                \caption{An example of an inverter-based resource (the solar panels)}
+                \caption{An example of an IBR}
             \end{figure}
         \end{column}
     \end{columns}
+    \note[item]{Think of inverters like digital to analog converters}
+    \
+    \note[item]{GFL's just do whatever the grid is doing using PLL's}
+    \note[item]{GFM's try to act more like synchronous generators}
+    \note[item]{Weakly coupled $\implies$ inverters can sort of do whatever they want}
+    \note[item]{This freedom makes control development harder}
+    \note[item]{But this freedom also creates opportunities}
 \end{frame}
 
 
@@ -190,6 +207,11 @@
         \includegraphics[width=0.85\textwidth]{img/physical_analogy.png}
         \caption{The basic analogy, with the associated droop curve\cite{main_paper}}
     \end{figure}
+    \note[item]{Visualize droop as a water tank}
+    \note[item]{Water level is frequency}
+    \note[item]{The area is the reciprocal of the droop coefficient/slope (and vice-versa)}
+    \note[item]{An adjustable block is the setpoint}
+    \note[item]{Pipes $\iff$ cables}
 \end{frame}
 
 \begin{frame}
@@ -214,6 +236,9 @@
         \includegraphics[height=0.7\textheight]{img/nonlinear.png}
         \caption{Various droop shapes: Linear (a), convex curved (b), and piecewise linear (c)\cite{main_paper}}
     \end{figure}
+    \note[item]{We can extend the basic analogy (leftmost) to include nonlinear
+        (center) and piecewise linear (right) droop controls}
+    \note[item]{The shape of the droop curve closely relates to the shape of the tank}
 \end{frame}
 
 \subsection{Applications/Demonstration}
@@ -221,8 +246,10 @@
     \frametitle{Power Setpoints and Grid Connection}
     \begin{figure}[h]
         \includegraphics[height=0.65\textheight]{img/grid_connected.png}
-        \caption{Various droop shapes: Linear (a), convex curved (b), and piecewise linear (c)\cite{main_paper}}
+        \caption{A local GFM tied to the bulk grid\cite{main_paper}}
     \end{figure}
+    \note[item]{The bulk grid can generally be seen as an exceedingly large tank}
+    \note[item]{To some degree, the GFM can do whatever it wants and $f$ will stay at $f_{nom}$}
 \end{frame}
 \begin{frame}
     \frametitle{Interconnected GFM Resources}
@@ -230,6 +257,9 @@
         \includegraphics[height=0.65\textheight]{img/interconnected.png}
         \caption{Frequency regulation/power sharing among interconnected resources\cite{main_paper}}
     \end{figure}
+    \note[item]{An example of how multiple GFM's can be connectd in this analogy}
+    \note[item]{Note that different tank areas and references change how they share the load}
+    \note[item]{Also note that the cross-sectional area is not typically configurable}
 \end{frame}
 \begin{frame}
     \frametitle{Microgrid}
@@ -237,6 +267,7 @@
         \includegraphics[height=0.65\textheight]{img/microgrid.png}
         \caption{An example microgrid, showing the ability to island via a valve\cite{main_paper}}
     \end{figure}
+    \note[item]{This example extends the prior one by introducing a valve -- a way to island}
 \end{frame}
 
 \begin{frame}
@@ -255,6 +286,10 @@
             \end{figure}
         \end{column}
     \end{columns}
+    \note[item]{The paper also includes several numerical examples, one of which is shown here}
+    \note[item]{We're not going to dwell on this because they're all exactly as one might expect}
+    \note[item]{Numerical examples rely on the mathematical descriptions, abstracted from physical realities}
+    \note[item]{Which leads into my critical feedback...}
 \end{frame}
 
 \section{Critical Response}
@@ -267,6 +302,7 @@
                     \item Water-tank analogy already exists for droop control in synchronous machines
                     \item IBR droop control is designed to be identical
                     \item Analogy for GFM's is thus trivial
+                    \item Unclear how this might help understand other controls (dVOC, etc.)
                 \end{itemize}
             \end{block}
         \end{column}
@@ -280,6 +316,13 @@
             \end{block}
         \end{column}
     \end{columns}
+    \note[item]{Obviously, one would expect an analogy for device A to work for
+        device B if device B is designed to behave exactly like A}
+    \note[item]{The extension to include nonlinear/piecewise linear is perhaps non-obvious}
+    \note[item]{Its important to sometimes re-embed concepts into popular
+        conciousness, even if they're well-established}
+    \note[item]{Using new language/examples for old knowledge is useful}
+    \note[item]{Imagine if all our amplifier design textbooks still used vacuum tubes!}
 \end{frame}
 
 \begin{frame}
@@ -303,19 +346,50 @@
             \end{block}
         \end{column}
     \end{columns}
+    \note[item]{ODE's are often introduced using waterflow analogy -- it's super intuitive!}
+    \note[item]{Almost all the visuals are well created and presented}
+    \note[item]{Paper proceeds in an orderly fashion, gradually adding complexity}
+    \note[item]{But...not enough background for non-power engineers (and definitely not non-EE)}
+    \note[item]{Insufficient motivation for why we would use droop in GFM's}
 \end{frame}
 
 \section{Conclusion}
 \begin{frame}
     \frametitle{Concluding Remarks}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item Power generation is switching to IBRs
+                \item IBRs are switching to GFMs
+                \item GFMs may use linear, piecewise linear, nonlinear droop, and others
+                \item Water tank analogy
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item Trivial extension of existing pedagogy
+                \item Insufficent background
+                \item Approachable analogy
+                \item Exising analogy in new language
+            \end{itemize}
+        \end{column}
+    \end{columns}
 \end{frame}
 \begin{frame}
     \frametitle{Bibliography}
     \bibliographystyle{amsalpha}
     {
-        \tiny
         \bibliography{qual_presentation.bib}
     }
+\end{frame}
+\begin{frame}
+    \begin{center}
+        \vspace{20pt}
+        {
+            \Huge
+            Q\&A
+        }
+    \end{center}
 \end{frame}
 
 \end{document}
