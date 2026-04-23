@@ -61,7 +61,7 @@
 
 \graphicspath{img}
 
-\title[PHYS 595]{``An Analogy of Frequency Droop Control for Grid-forming Sources''}
+\title[PHYS 595]{``An Analogy of Frequency Droop Control for Grid-forming Sources'' Lu, '25, arXiv}
 \subtitle{A PHYS 595 Journal Club Presentation}
 \author[ES]{Eric Silk}
 \institute[ECE@UIUC]{Electrical and Computer Engineering\linebreak University of Illinois at Urbana-Champaign}
@@ -86,7 +86,7 @@
 
 \section{Background}
 \begin{frame}
-    \frametitle{Motivation}
+    \frametitle{Paper Motivation}
     \begin{itemize}
         \item Principally pedagogical
         \item Mechanical analogy for electrical system
@@ -98,7 +98,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Power Generation}
+    \frametitle{Power Generation: Historical Perspective}
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{itemize}
@@ -122,7 +122,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Primary Control}
+    \frametitle{Primary Control of Synchronous Machines}
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{itemize}
@@ -134,11 +134,11 @@
             \end{itemize}
             \vspace{10pt}
             \begin{equation}
-                f = f_{nom}-m_p\left(P-P_{ref}\right)
-            \end{equation}
-            \begin{equation}
+                f = f_{nom}-m_p\left(P-P_{ref}\right),\ 
                 m_p\coloneqq \frac{\Delta f}{S_{rated}}
             \end{equation}
+            where $f$ is frequency, $P$ is active power, $(\cdot)_{nom}$ is a nominal quantity,
+            $S_rated$ is the rated apparent power.
         \end{column}
         \begin{column}{0.5\textwidth}
             \begin{figure}[h]
@@ -156,7 +156,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Inverter Based Resources}
+    \frametitle{Inverter Based Resources: The Future of Generation}
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{itemize}
@@ -271,7 +271,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Numerical Results}
+    \frametitle{Numerical Results Presented in the Paper}
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{itemize}
