@@ -87,12 +87,21 @@
 \section{Background}
 \begin{frame}
     \frametitle{Paper Motivation}
-    \begin{itemize}
-        \item Principally pedagogical
-        \item Mechanical analogy for electrical system
-        \item Useful for education and intuition when designing power systems
-        \item Not research, \textit{per se}
-    \end{itemize}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item Principally pedagogical
+                \item Mechanical analogy for electrical system
+                \item Useful for education and intuition when designing power systems
+                \item Not research, \textit{per se}
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \includegraphics[height=0.75\textheight]{img/da_paper.png}
+            \end{figure}
+        \end{column}
+    \end{columns}
     \note[item]{These papers aren't uncommon in engineering as "support" for new research areas}
     \note[item]{Given the emphasis on broad interest/Accessibility in this class, this seemed appropriate}
 \end{frame}
@@ -117,6 +126,7 @@
         \end{column}
     \end{columns}
 
+    \note[item]{AC due to passive transformers enabling stepping up/down voltages to minimize losses}
     \note[item]{Centralized due to economies of scale}
     \note[item]{The strong coupling is bidirectional}
 \end{frame}
@@ -127,18 +137,18 @@
         \begin{column}{0.5\textwidth}
             \begin{itemize}
                 \item Inverse relationship between frequency and speed
-                \item Droop control
+                \item ``Droop'' control -- power output droops as frequency increases
                 \item Prevents frequency collapse (or the opposite)
                 \item Enables power sharing between generators
                 \item ``Grid forming'' (GFM) resources
             \end{itemize}
             \vspace{10pt}
             \begin{equation}
-                f = f_{nom}-m_p\left(P-P_{ref}\right),\ 
+                f = f_{nom}-m_p\left(P-P_{ref}\right),\
                 m_p\coloneqq \frac{\Delta f}{S_{rated}}
             \end{equation}
             where $f$ is frequency, $P$ is active power, $(\cdot)_{nom}$ is a nominal quantity,
-            $S_rated$ is the rated apparent power.
+            $S_{rated}$ is the rated apparent power.
         \end{column}
         \begin{column}{0.5\textwidth}
             \begin{figure}[h]
@@ -202,7 +212,7 @@
     \end{block}
 \end{frame}
 \begin{frame}
-    \frametitle{Basic Visual}
+    \frametitle{Basic Visualization of the Analogy}
     \begin{figure}[h]
         \includegraphics[width=0.85\textwidth]{img/physical_analogy.png}
         \caption{The basic analogy, with the associated droop curve\cite{main_paper}}
@@ -272,17 +282,19 @@
 
 \begin{frame}
     \frametitle{Numerical Results Presented in the Paper}
+    Several numerical results are presented, all of which are as expected. This example is
+    a simulation of changing the block setpoint (or power reference).
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \begin{itemize}
-                \item Several numerical simulations included
-                \item Ultimately, nothing surprising here
-            \end{itemize}
+            \begin{figure}[h]
+                \includegraphics[width=0.9\textwidth]{img/numerical1.png}
+                \caption{Water Level (cm) vs time (s)\cite{synch_machine}}
+            \end{figure}
         \end{column}
         \begin{column}{0.5\textwidth}
             \begin{figure}[h]
-                \includegraphics[height=0.5\textheight]{img/numerical.png}
-                \caption{Simulation of changing the power/block setpoint\cite{synch_machine}}
+                \includegraphics[width=0.9\textwidth]{img/numerical2.png}
+                \caption{Water Volume (cm$^3$) vs time (s)\cite{synch_machine}}
             \end{figure}
         \end{column}
     \end{columns}
